@@ -13,6 +13,13 @@ No OCR, authentication, database, tracking, payments, or heavy local transformer
 - Frontend: https://anytext-ai-document-intelligence.vercel.app/
 - Backend health: https://anytext-ai-document-intelligence.onrender.com/health
 
+## Author / Built By
+
+Built by Osama Harrab
+
+- GitHub: https://github.com/osamaharrab/anytext-ai-document-intelligence
+- LinkedIn: https://www.linkedin.com/in/osama-harrab-694a2a381/
+
 ## Features
 
 - Paste text or upload TXT, CSV, PDF, and DOCX files.
@@ -216,11 +223,11 @@ Optional CSV columns:
 
 ## Privacy Note
 
-Do not upload sensitive, confidential, private, regulated, or customer documents to the public demo.
+Do not upload sensitive or confidential documents to the public demo.
 
 The app does not intentionally store uploaded content, add tracking, or write runtime analysis files. Documents are processed in memory by the API and kept in frontend browser state for the active session.
 
-Explorer previews and Ask evidence snippets may show document text in the browser session. Use the included sample corpus or sanitized text for public screenshots, demos, and shared links.
+Explorer previews and Ask evidence snippets may show text from uploaded documents in the browser session. Screenshots should use sample data only, preferably `data/sample_text_corpus.csv`.
 
 ## Testing
 

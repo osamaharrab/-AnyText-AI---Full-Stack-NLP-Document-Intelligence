@@ -23,6 +23,7 @@ import { AskPage } from './pages/AskPage.jsx';
 import { ReportPage } from './pages/ReportPage.jsx';
 import { DownloadsPage } from './pages/DownloadsPage.jsx';
 import { formatNumber } from './lib/format.js';
+import { PROFILE_LINKS } from './lib/profile.js';
 
 const NAV_ITEMS = [
   { id: 'Input', icon: Home },
@@ -77,7 +78,7 @@ export default function App() {
   }[activePage];
 
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -96,6 +97,22 @@ export default function App() {
               <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
                 {status}
               </span>
+              <a
+                className="text-sm font-semibold text-slate-500 transition hover:text-brand-700"
+                href={PROFILE_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a
+                className="text-sm font-semibold text-slate-500 transition hover:text-brand-700"
+                href={PROFILE_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
               <Button variant="subtle" onClick={() => setActivePage('Input')}>
                 New analysis
               </Button>
@@ -126,7 +143,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8">
         {error ? (
           <div className="mb-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-800">
             {error}
@@ -141,6 +158,29 @@ export default function App() {
 
         {page}
       </main>
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-5 text-sm text-slate-500 sm:px-6 lg:px-8">
+          <span>Built by {PROFILE_LINKS.author}</span>
+          <span aria-hidden="true">·</span>
+          <a
+            className="font-semibold text-slate-600 transition hover:text-brand-700"
+            href={PROFILE_LINKS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <span aria-hidden="true">·</span>
+          <a
+            className="font-semibold text-slate-600 transition hover:text-brand-700"
+            href={PROFILE_LINKS.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -122,8 +122,9 @@ export function ExplorerPage({ analysis }) {
           <div className="whitespace-pre-wrap break-words max-h-80 overflow-y-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
             {previewText || 'No preview text available.'}
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500">
-            Public demo note: avoid uploading sensitive documents. Previews are for local/browser display only.
+          <p className="mt-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-5 text-slate-600">
+            Privacy note: avoid uploading sensitive or confidential documents to the public demo. Files are processed
+            for this session only.
           </p>
         </CardBody>
       </Card>

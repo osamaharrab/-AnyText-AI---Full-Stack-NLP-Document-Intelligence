@@ -46,8 +46,9 @@ export function InputPage({ analysis, onAnalysis, setBusy, busy, setError }) {
               Analyze pasted text or supported files with the existing AnyText AI NLP pipeline: spaCy NER,
               TF-IDF keywords, entity relationships, search, and reports.
             </p>
-            <p className="mt-4 max-w-2xl rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
-              Public demo note: avoid uploading sensitive documents. Previews are for local/browser display only.
+            <p className="mt-4 max-w-2xl rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
+              Privacy note: avoid uploading sensitive or confidential documents to the public demo. Files are processed
+              for this session only.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button icon={Database} onClick={() => run('Loading sample corpus...', () => loadSample(topN))} disabled={disabled}>
