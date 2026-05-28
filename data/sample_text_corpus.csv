@@ -1,0 +1,25 @@
+id,text,language,category
+tech_001,"Apple announced new privacy features in London during 2024, while Microsoft expanded cloud services for health organizations.",en,technology
+tech_002,"Google opened an AI research hub in Amman to support Arabic language products across Jordan and the wider region.",en,technology
+tech_003,"Microsoft and Apple invested $5 million in a joint education program focused on responsible artificial intelligence.",en,technology
+business_001,"A Jordan-based startup reported 25% revenue growth after signing enterprise contracts with Google and regional banks.",en,business
+business_002,"The London Chamber of Commerce said technology exports could reach $5 million by 2030 if digital trade rules improve.",en,business
+business_003,"Apple suppliers in Europe revised their 2024 forecasts after demand increased in education and business markets.",en,business
+health_001,"The World Health Organization warned that climate change is increasing hospital demand across Jordan and North Africa.",en,health
+health_002,"Doctors in Amman partnered with Microsoft to analyze patient scheduling data and reduce waiting times by 25%.",en,health
+health_003,"The United Nations and the World Health Organization launched a 2030 public health initiative in London.",en,health
+education_001,"Google supported a university program in Jordan that teaches data literacy to 500 students in Amman.",en,education
+education_002,"Microsoft donated cloud credits worth $5 million to schools building AI labs before the 2030 academic roadmap.",en,education
+education_003,"Apple and local educators introduced accessibility workshops for students in London during 2024.",en,education
+environment_001,"The United Nations published a 2030 climate policy brief that cited water pressure in Jordan and urban heat in Amman.",en,environment
+environment_002,"Google researchers used satellite data to measure air quality changes near London and forecast a 25% emissions decline.",en,environment
+environment_003,"The World Health Organization linked extreme heat to health risks and urged governments to prepare by 2030.",en,environment
+policy_001,"Jordan and the United Nations discussed digital policy standards in Amman for secure public services.",en,policy
+policy_002,"A 2024 policy forum in London included Microsoft, Google, and privacy regulators from the European Union.",en,policy
+policy_003,"The Ministry of Digital Economy in Jordan proposed a 25% increase in cybersecurity training funds.",en,policy
+sports_001,"The Amman marathon attracted runners from London and raised $5 million for youth sports programs.",en,sports
+sports_002,"A Jordan football club signed a sponsorship agreement with Apple for analytics equipment before the 2024 season.",en,sports
+sports_003,"Microsoft provided cloud dashboards for a regional sports federation tracking athlete performance through 2030.",en,sports
+ar_001,"أعلنت الأمم المتحدة في عمّان عن مبادرة بيئية جديدة لدعم الأردن حتى عام 2030.",ar,environment
+ar_002,"ناقشت منظمة الصحة العالمية مع أطباء في الأردن خطط الصحة العامة لعام 2024.",ar,health
+ar_003,"افتتحت Google برنامجا تعليميا في عمّان لمساعدة الطلاب على تعلم الذكاء الاصطناعي.",ar,education

@@ -1,0 +1,37 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+.venv/
+venv/
+
+.env
+frontend/.env
+
+frontend/node_modules/
+frontend/dist/
+
+outputs/*
+!outputs/.gitkeep
+outputs/*.json
+outputs/*.txt
+
+uploads/
+uploaded_files/
+
+# Private uploaded document types. If public sample documents are needed later,
+# place them in a dedicated allowlisted sample folder.
+*.pdf
+*.docx
+*.doc
+*.rtf
+*.xlsx
+*.xls
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
