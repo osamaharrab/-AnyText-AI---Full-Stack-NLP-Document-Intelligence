@@ -10,8 +10,8 @@ No OCR, authentication, database, tracking, payments, or heavy local transformer
 
 ## Live Demo
 
-- Frontend: Coming soon
-- Backend health: Coming soon
+- Frontend: https://anytext-ai-document-intelligence.vercel.app/
+- Backend health: https://anytext-ai-document-intelligence.onrender.com/health
 
 ## Features
 
@@ -213,19 +213,6 @@ Optional CSV columns:
 - `language`
 - `category`
 
-## Screenshots
-
-Existing screenshots are stored in `docs/screenshots/`. They were captured from the earlier Streamlit UI and can remain as legacy references until new React screenshots are added.
-
-Screenshots should use `data/sample_text_corpus.csv` only. Do not publish screenshots that include private CVs, phone numbers, emails, uploaded documents, or confidential text.
-
-| Home | Entity Analysis |
-|---|---|
-| ![Home](docs/screenshots/home.png) | ![Entity Analysis](docs/screenshots/entity-analysis.png) |
-
-| Search | Report |
-|---|---|
-| ![Search](docs/screenshots/search.png) | ![Report](docs/screenshots/report.png) |
 
 ## Privacy Note
 
