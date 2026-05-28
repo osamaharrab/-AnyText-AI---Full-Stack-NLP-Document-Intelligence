@@ -1,334 +1,178 @@
-# AnyText AI - Full-Stack NLP Document Intelligence
+# AnyText AI — NLP Document Intelligence
 
-AnyText AI is a full-stack NLP Document Intelligence app that helps answer:
+**AnyText AI** is a full-stack NLP Document Intelligence app that helps users analyze document collections, extract insights, search across documents, and ask evidence-based questions.
 
-**What can this document collection tell me?**
+It answers one practical question:
 
-It lets users paste text, upload supported document files, analyze entities and keywords, search a corpus, ask evidence-based questions, inspect document relationships, and export reports. The product uses a modern React dashboard with a stateless FastAPI backend while preserving the original Python NLP modules.
+> **What can this document collection tell me?**
 
-No OCR, authentication, database, tracking, payments, or heavy local transformer models are included.
+Users can paste text or upload files such as TXT, CSV, PDF, and DOCX, then explore entities, keywords, relationships, search results, document details, and retrieval-based Q&A through a modern web dashboard.
+
+---
 
 ## Live Demo
 
-- Frontend: https://anytext-ai-document-intelligence.vercel.app/
-- Backend health: https://anytext-ai-document-intelligence.onrender.com/health
+* **App:** https://anytext-ai-document-intelligence.vercel.app/
+* **Backend health:** https://anytext-ai-document-intelligence.onrender.com/health
+* **GitHub:** https://github.com/osamaharrab/anytext-ai-document-intelligence
 
-## Author / Built By
+---
 
-Built by Osama Harrab
+## Built By
 
-- GitHub: https://github.com/osamaharrab/anytext-ai-document-intelligence
-- LinkedIn: https://www.linkedin.com/in/osama-harrab-694a2a381/
+Built by **Osama Harrab**
 
-## Features
+* LinkedIn: https://www.linkedin.com/in/osama-harrab-694a2a381/
+* GitHub: https://github.com/osamaharrab
 
-- Paste text or upload TXT, CSV, PDF, and DOCX files.
-- Load the included sample corpus.
-- Prepare a standard document table.
-- Run English-first spaCy named entity recognition.
-- Extract TF-IDF corpus and document keywords.
-- View overview metrics, language distribution, and category distribution.
-- Explore entities with label/source/category/language filters.
-- Drill into one entity across matching documents.
-- Inspect one document with metadata, raw text, entities, and keywords.
-- Review entity co-occurrence and cross-category patterns.
-- Search documents with TF-IDF cosine similarity.
-- Ask grounded questions over the current document collection with retrieval-only evidence snippets.
-- Generate a Markdown NLP report.
-- Export CSV, JSON, and Markdown outputs.
+---
 
-## Architecture
+## What It Can Do
 
-AnyText AI uses a split full-stack architecture:
+* Upload or paste documents.
+* Analyze TXT, CSV, PDF, and DOCX files.
+* Extract named entities with spaCy.
+* Extract TF-IDF keywords.
+* Search documents with TF-IDF similarity.
+* Ask questions about uploaded documents using retrieved evidence snippets.
+* Explore entity relationships and cross-category patterns.
+* Inspect each document with metadata, preview text, entities, and keywords.
+* Export CSV, JSON, and Markdown reports.
 
-- **FastAPI backend** in `api/` exposes stateless document analysis, search, Ask, and export endpoints.
-- **React + Vite + Tailwind frontend** in `frontend/` is the main product UI.
-- **Reusable NLP modules** in `src/` contain the document loading, preprocessing, NER, analytics, keyword, search, Ask, and report logic.
-- **Legacy Streamlit prototype** in `app.py` is kept as a demo/reference UI, but the React frontend is the main product.
+---
 
-```text
-anytext-ai/
-├── api/
-│   ├── main.py              # FastAPI app, CORS, and routes
-│   ├── schemas.py           # API request schemas
-│   └── services.py          # Stateless adapters around src/ NLP logic
-├── frontend/
-│   ├── package.json
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── src/
-│       ├── App.jsx
-│       ├── components/
-│       ├── pages/
-│       ├── lib/
-│       └── styles.css
-├── app.py                   # Legacy Streamlit prototype
-├── data/
-│   └── sample_text_corpus.csv
-├── src/
-│   ├── input_loader.py
-│   ├── preprocessing.py
-│   ├── ner.py
-│   ├── analytics.py
-│   ├── keywords.py
-│   ├── search.py
-│   ├── document_qa.py       # Ask Your Documents retrieval logic
-│   ├── report.py
-│   ├── utils.py
-│   └── drilldown.py
-└── tests/
-```
+## Key Features
 
-## How The NLP Pipeline Works
+### Document Analysis
 
-The FastAPI backend calls the existing Python modules instead of rewriting algorithms:
+AnyText AI standardizes uploaded content into a document collection, detects language, prepares searchable text, and runs NLP analysis over the corpus.
 
-- `src/input_loader.py`: loads pasted text, TXT, CSV, PDF, and DOCX inputs.
-- `src/preprocessing.py`: standardizes documents, normalizes Unicode, detects language, and builds search text.
-- `src/ner.py`: loads spaCy and extracts named entities.
-- `src/analytics.py`: computes top entities, label counts, co-occurrence, and cross-category patterns.
-- `src/keywords.py`: extracts TF-IDF keywords and document keywords.
-- `src/search.py`: builds TF-IDF vectors and ranks search results with cosine similarity.
-- `src/document_qa.py`: chunks documents and answers questions with TF-IDF retrieval over evidence snippets.
-- `src/report.py`: generates the Markdown NLP report.
-- `src/utils.py`: keeps export helpers for the legacy Streamlit app.
+### Named Entity Recognition
 
-The API is stateless. Uploaded content is processed in memory and returned to the browser as JSON for the current session.
+The app extracts entities such as organizations, locations, dates, people, quantities, and other important terms using spaCy.
 
-## API Endpoints
+### Keyword Extraction
 
-- `GET /health`
-- `POST /api/analyze-text`
-- `POST /api/analyze-files`
-- `GET /api/sample`
-- `POST /api/search`
-- `POST /api/ask`
-- `POST /api/export/report`
-- `POST /api/export/json`
+TF-IDF is used to identify important corpus-level and document-level keywords.
 
-The main analysis response includes:
+### Search
 
-- `documents`
-- `corpus_stats`
-- `entity_mentions`
-- `entities`
-- `top_entities`
-- `entity_label_counts`
-- `keywords`
-- `document_keywords`
-- `co_occurrence`
-- `cross_category_patterns`
-- `report_markdown`
-- `search_ready`
-- `metadata`
+Users can search across the document collection and receive ranked results based on cosine similarity.
 
-## Local Setup
+### Ask Your Documents
 
-### Backend
+Users can ask questions about the uploaded documents. The app retrieves relevant snippets and answers based only on evidence found in the current document collection.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm
-python -m uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
-```
+This feature is retrieval-based, not a generative LLM.
 
-The backend will be available at:
+### Reports and Exports
+
+The app can export analysis results as CSV, JSON, and Markdown reports.
+
+---
+
+## Screenshots
+
+
+### Home
+
+<img width="1734" height="957" alt="Screenshot From 2026-05-28 17-51-23" src="https://github.com/user-attachments/assets/a53690cb-b517-4d34-812c-b46a462400f1" />
+
+
+### Entity Analysis
+
+<img width="1365" height="952" alt="Screenshot From 2026-05-28 18-16-13" src="https://github.com/user-attachments/assets/52a1a150-83dd-45c6-b886-f27960fe3673" />
+
+
+### Search
+
+<img width="1365" height="952" alt="Screenshot From 2026-05-28 17-53-07" src="https://github.com/user-attachments/assets/d6e6bc5f-2172-46e7-bbbe-6ca829d7c64b" />
+
+
+### Report
+
+<img width="1365" height="952" alt="Screenshot From 2026-05-28 17-53-17" src="https://github.com/user-attachments/assets/a43d733d-2685-4fcd-a171-636d9115ee21" />
+
+
+---
+
+## Tech Stack
+
+| Layer        | Tools                       |
+| ------------ | --------------------------- |
+| Frontend     | React, Vite, Tailwind CSS   |
+| Backend      | FastAPI, Uvicorn            |
+| NLP          | spaCy, scikit-learn, pandas |
+| File Parsing | pypdf, python-docx          |
+| Deployment   | Vercel, Render              |
+| Testing      | pytest                      |
+
+---
+
+## Project Structure
 
 ```text
-http://127.0.0.1:8000
+anytext-ai-document-intelligence/
+├── api/          # FastAPI backend
+├── frontend/     # React/Vite/Tailwind frontend
+├── src/          # Reusable NLP modules
+├── data/         # Sample corpus
+├── docs/         # Screenshots
+├── tests/        # Test suite
+└── app.py        # Legacy Streamlit prototype
 ```
 
-### Frontend
+---
 
-```bash
-cd frontend
-cp .env.example .env
-npm install
-npm run dev
-```
+## Main NLP Modules
 
-The Vite dev server will be available at:
+| Module             | Purpose                                    |
+| ------------------ | ------------------------------------------ |
+| `input_loader.py`  | Loads text, CSV, PDF, and DOCX inputs      |
+| `preprocessing.py` | Normalizes and prepares documents          |
+| `ner.py`           | Runs spaCy Named Entity Recognition        |
+| `analytics.py`     | Computes entity and relationship analytics |
+| `keywords.py`      | Extracts TF-IDF keywords                   |
+| `search.py`        | Runs TF-IDF search                         |
+| `document_qa.py`   | Powers Ask Your Documents retrieval        |
+| `report.py`        | Generates Markdown reports                 |
 
-```text
-http://localhost:5173
-```
-
-### Legacy Streamlit Prototype
-
-```bash
-streamlit run app.py
-```
-
-`app.py` is a legacy/demo UI. The React frontend is the main product experience.
-
-## Environment Variables
-
-### Frontend local development
-
-Create `frontend/.env` from `frontend/.env.example`:
-
-```env
-VITE_API_URL=http://127.0.0.1:8000
-```
-
-### Render backend
-
-After the frontend is deployed, set the deployed frontend URL on the backend:
-
-```env
-FRONTEND_ORIGIN=https://your-frontend.vercel.app
-```
-
-For multiple deployed frontends, use comma-separated origins:
-
-```env
-FRONTEND_ORIGINS=https://site1.vercel.app,https://site2.vercel.app
-```
-
-### Vercel frontend
-
-Set the frontend build-time API URL:
-
-```env
-VITE_API_URL=https://your-backend.onrender.com
-```
-
-## How To Use
-
-1. Open the React frontend.
-2. Paste text, upload supported files, or load the sample corpus.
-3. Run analysis.
-4. Review Overview, Entities, Keywords, Explorer, Relationships, Search, Ask, Report, and Downloads.
-5. Export CSV, JSON, or Markdown outputs.
-
-## Accepted Inputs
-
-- Pasted text
-- `.txt`
-- `.csv`
-- `.pdf` with embedded text
-- `.docx`
-
-CSV uploads need a text-like column. The loader auto-detects common names such as `text`, `content`, `body`, `article`, `document`, and `description`.
-
-Optional CSV columns:
-
-- `id`
-- `language`
-- `category`
-
+---
 
 ## Privacy Note
 
 Do not upload sensitive or confidential documents to the public demo.
 
-The app does not intentionally store uploaded content, add tracking, or write runtime analysis files. Documents are processed in memory by the API and kept in frontend browser state for the active session.
+Uploaded content is processed for the active session. Explorer previews and Ask evidence snippets may display text from uploaded documents in the browser.
 
-Explorer previews and Ask evidence snippets may show text from uploaded documents in the browser session. Screenshots should use sample data only, preferably `data/sample_text_corpus.csv`.
+Public screenshots should use sample data only.
 
-## Testing
+---
 
-```bash
-python -m compileall -q app.py src tests api
-python -m pytest -q
-cd frontend
-npm run build
-```
+## Limitations
 
-Tests cover the existing NLP modules, FastAPI endpoints, and retrieval-only Ask behavior.
+* spaCy NER is English-first.
+* PDF extraction only works for embedded text, not scanned PDFs.
+* OCR is not included.
+* Search and Ask use TF-IDF retrieval, not deep semantic reasoning.
+* Ask Your Documents is retrieval-based, not a generative LLM.
+* Large files may be slower because processing happens in memory.
+* Human review is recommended for high-stakes use.
 
-## Deployment
-
-### Render Backend
-
-1. Create a Render Web Service.
-2. Set the root directory to the repository root.
-3. Use this build command:
-
-```bash
-pip install -r requirements.txt && python -m spacy download en_core_web_sm
-```
-
-4. Use this start command:
-
-```bash
-python -m uvicorn api.main:app --host 0.0.0.0 --port $PORT
-```
-
-5. Deploy the service and confirm:
-
-```text
-https://your-backend.onrender.com/health
-```
-
-6. After the Vercel frontend URL exists, set this Render environment variable:
-
-```env
-FRONTEND_ORIGIN=https://your-frontend.vercel.app
-```
-
-### Vercel Frontend
-
-1. Create a Vercel project from this repository.
-2. Set the root directory to `frontend`.
-3. Use this build command:
-
-```bash
-npm run build
-```
-
-4. Set the output directory to:
-
-```text
-dist
-```
-
-5. Set this environment variable:
-
-```env
-VITE_API_URL=https://your-backend.onrender.com
-```
-
-### CORS Troubleshooting
-
-If the deployed frontend shows `Failed to fetch`, check:
-
-- `VITE_API_URL` in Vercel points to the deployed backend URL.
-- `FRONTEND_ORIGIN` in Render exactly matches the deployed frontend origin.
-- The backend `/health` endpoint returns `{"status":"ok","service":"anytext-ai-api"}`.
-
-### Other Deployment Options
-
-- Backend: Railway, Fly.io, Azure App Service, AWS App Runner, or any container host that can run Uvicorn.
-- Frontend: Netlify, Cloudflare Pages, or any static host that can build Vite.
-- Legacy Streamlit: Streamlit Cloud can still run `app.py`, but it is no longer the main product architecture.
-
-## Known Limitations
-
-- spaCy NER is English-first.
-- The small spaCy model is CPU-friendly but may miss entities or assign imperfect labels.
-- PDF extraction only works for embedded text, not scanned PDFs.
-- OCR is not implemented.
-- TF-IDF search and Ask are retrieval/statistical, not deep semantic reasoning.
-- Ask Your Documents returns evidence-based retrieval answers, not generative LLM answers.
-- Keyword extraction is statistical, not a human-written topic model.
-- Human review is required for high-stakes use.
-- Large files are processed in memory and may be slow.
-- No authentication, database, audit logging, or enterprise controls are included.
+---
 
 ## Future Improvements
 
-- New React screenshots.
-- Optional ZIP export for all CSV/JSON/Markdown files.
-- Better CSV preview and schema validation before analysis.
-- Entity alias normalization and canonicalization.
-- More robust multilingual NER.
-- Optional OCR as a separate feature.
-- Optional semantic search as a separate feature.
+* Add a short demo video or GIF.
+* Add optional ZIP export for all outputs.
+* Improve CSV preview and schema validation.
+* Add entity alias normalization.
+* Improve multilingual NER.
+* Add optional OCR for scanned PDFs.
+* Add optional semantic search.
 
-## Portfolio / LinkedIn Summary
+---
 
-AnyText AI is a full-stack NLP Document Intelligence app built with FastAPI, React, Vite, Tailwind CSS, spaCy, and scikit-learn. It analyzes pasted or uploaded document collections, extracts entities and keywords, supports TF-IDF search, answers evidence-based document questions, visualizes relationships, and exports reports while keeping processing stateless and in memory.
+## Portfolio Summary
+
+AnyText AI is a full-stack NLP Document Intelligence app built with FastAPI, React, Vite, Tailwind CSS, spaCy, and scikit-learn. It analyzes uploaded document collections, extracts entities and keywords, supports search, answers evidence-based document questions, visualizes relationships, and exports reports.
